@@ -1,0 +1,77 @@
+//Media Queries Break Points
+@use "sass:math";
+
+@mixin media-sm {
+    @media (min-width: 500px) and (max-width: 700px) {
+        @content;
+    }
+}
+
+@mixin media-md {
+    @media (min-width: 701px) and (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media screen and (min-width: 901px) {
+        @content;
+    }
+}
+
+@mixin loading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+}
+
+@mixin card-content {
+    max-width: 80rem;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 10px 4px rgba(145, 145, 145, 0.1);
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 17rem minmax(14rem, max-content) 1fr 10px 1fr;
+    grid-template-areas:
+      "header"
+      "storyline"
+      "image"
+      "."
+      "review";
+
+    @include media-sm() {
+      grid-template-columns: 1fr;
+      grid-template-rows: 17rem minmax(13rem, max-content) 1fr 10px 1fr;
+      grid-template-areas:
+        "header"
+        "storyline"
+        "image"
+        "."
+        "review";
+    }
+
+    @include media-md() {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 17rem minmax(14rem, max-content) 10px 1fr;
+      grid-template-areas:
+        "header image"
+        "storyline image"
+        ". ." // added to add extra space between which will have 10px
+        "review review";
+    }
+
+    @include media-lg() {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 17rem minmax(19rem, max-content) 10px 1fr;
+
+      grid-template-areas:
+        "header image"
+        "storyline image"
+        ". ." // added to add extra space between which will have 10px
+        "review review";
+    }
+}

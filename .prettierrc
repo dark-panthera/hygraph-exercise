@@ -1,0 +1,30 @@
+{
+  "printWidth": 120,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "quoteProps": "preserve",
+  "singleQuote": false,
+  "overrides": [
+		{
+			"files": "src/**/*.html",
+			"options": {
+				"tabWidth": 2,
+				"printWidth": 60
+			}
+		},
+		{
+			"files": "src/**/*.ts",
+			"options": {
+				"tabWidth": 2,
+				"printWidth": 80
+			}
+		},
+		{
+			"files": "src/**/*.json",
+			"options": {
+				"tabWidth": 2,
+				"printWidth": 80
+			}
+		}
+	]
+}

@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+// Palette
+$indigo-palette: (
+ 50: #c0c9f5,
+ 100: #9aa9f2,
+ 500: #045df6,
+ 700: #7986cb,
+ 900: #545972,
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+ )
+);
+
+// variant palette definition
+$primary: mat.define-palette($indigo-palette);
+
+$accent: mat.define-palette(mat.$pink-palette);
+
+$warn: mat.define-palette(mat.$red-palette);
+
+// theme configurations
+$theme: mat.define-light-theme((
+  color: (primary: $primary, accent: $accent, warn: $warn),
+));
+
+// color configurations
+$color-config:    mat.get-color-config($theme);
+
+// palette configuration
+$primary-palette: map.get($color-config, 'primary');
+
+$accent-palette:  map.get($color-config, 'accent');
+
+$warn-palette:    map.get($color-config, 'warn');
+
+$is-dark-theme:   map.get($color-config, 'is-dark');
+
+// Theme Init
+@include mat.all-component-themes($theme);

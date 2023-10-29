@@ -1,0 +1,79 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/global.scss";
+@import "../../../styles/common.scss";
+
+.tag {
+  padding: 0.2rem 0.5rem;
+  background: $tag-color;
+  border-radius: 0.2rem;
+}
+
+mat-card {
+  &:not([class*="mat-elevation-z"]) {
+    @include card-content;
+  }
+}
+
+.card {
+  &--header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &--storyline {
+    grid-area: storyline;
+    line-height: 1.8rem;
+    text-align: justify;
+    max-width: 40rem;
+    border-top: 1px dashed #f1f1f1;
+  }
+
+  &--image {
+    grid-area: image;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &--review {
+    grid-area: review;
+    height: 40rem;
+  }
+}
+
+mat-card {
+  margin: 2rem auto;
+  padding-left: 2rem;
+
+  &-header {
+    padding: 16px 16px;
+  }
+
+  &-title {
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 1rem;
+    line-height: 3rem;
+  }
+
+  &-subtitle {
+    padding: 0 1rem;
+    line-height: 1.5rem;
+  }
+
+  &-content {
+    margin-top: 1rem;
+  }
+
+  img {
+    width: 24rem;
+    height: auto;
+  }
+}
+
+.loading {
+  @include loading;
+}

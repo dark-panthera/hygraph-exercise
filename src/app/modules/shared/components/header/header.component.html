@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <div class="header">
+    <h1>{{title}}</h1> 
+
+    <ng-container *ngIf="isHomeEnabled">
+      <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="onRedirectHome()">
+        <mat-icon>home</mat-icon>
+      </button>
+    </ng-container>
+    
+  </div>
+</mat-toolbar>

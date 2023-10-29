@@ -1,0 +1,23 @@
+<mat-card class="card" (click)="onNavigateInformation()">
+  <mat-card-header>
+    <mat-card-title>{{movie.movieTitle}}</mat-card-title>
+    <mat-card-subtitle>
+      Release Year:
+      <span class="tag">{{movie.releaseDate | date: 'yyyy' }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <ng-container *ngIf="movie.moviePoster">
+    <img mat-card-image [src]="movie.moviePoster.url" alt="Movie Poster" />
+  </ng-container>
+  
+  <mat-card-content>
+    <p *ngIf="movie.storyline">
+      {{ movie.storyline | truncate: 120 }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-content>
+    <app-genre [inputGenres]="movie.genres"></app-genre>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,95 @@
+<div class="main">
+  <ng-container
+    *ngIf="isLoading; else loadedMoviesTemplate"
+  >
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #loadedMoviesTemplate>
+  <ng-container
+    *ngIf="movie && isFound; else notFoundTemplate"
+  >
+    <ng-container
+      *ngTemplateOutlet="
+          loadedTemplate;
+          context: { movie: movie }
+        "
+    ></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #loadedTemplate let-movie="movie">
+  <mat-card class="card">
+    <div class="card--header">
+      <mat-card-title>{{movie.movieTitle}}</mat-card-title>
+
+      <mat-card-subtitle>
+        <div class="group">
+          <b>
+            Release Year:
+          </b>
+          <span class="tag">
+            {{movie.releaseDate | date: 'yyyy' }}
+          </span>
+          <br />
+        </div>
+        <div class="group">
+          <b>
+            Release Date:
+          </b>
+          <span>{{movie.releaseDate | date }}</span>
+        </div>
+        <div class="group">
+          <b>
+            Runtime:
+          </b>
+          <span>{{movie.runtime }} mins</span>
+        </div>
+      </mat-card-subtitle>
+
+      <mat-card-content>
+        <app-genre [inputGenres]="movie.genres"></app-genre>
+      </mat-card-content>
+    </div>
+
+    <div class="card--image">
+      <ng-container *ngIf="movie.moviePoster">
+        <img
+          mat-card-image
+          [src]="movie.moviePoster.url"
+          alt="Movie Poster"
+        />
+      </ng-container>
+    </div>
+
+    <div class="card--storyline">
+      <mat-card-content>
+        <b>
+          Storyline:
+        </b>
+        <p *ngIf="movie.storyline">
+          {{ movie.storyline }}
+        </p>
+      </mat-card-content>
+    </div>
+
+    <div class="card--review">
+      <app-related-movies
+        [inputMovie]="movie.relatedMovies | slice:0:3"
+      ></app-related-movies>
+    </div>
+  </mat-card>
+</ng-template>
+
+<ng-template #notFoundTemplate>
+  <app-not-found></app-not-found>
+</ng-template>

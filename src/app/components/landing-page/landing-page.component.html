@@ -1,0 +1,25 @@
+<div class="main">
+  <ng-container *ngIf="(movies$ | async) as moviesList; else loadingTemplate">
+    <ng-container *ngTemplateOutlet="
+        loadedTemplate;
+        context: { moviesList: moviesList }
+      "></ng-container>
+  </ng-container>
+</div>
+
+<!-- Templates -->
+<ng-template #loadingTemplate>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #loadedTemplate let-moviesList="moviesList">
+  <cdk-virtual-scroll-viewport itemSize="moviesList.length">
+    <div class="container">
+      <ng-container *ngFor="let movie of moviesList">
+        <app-movie-card [inputMovie]="movie"></app-movie-card>
+      </ng-container>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</ng-template>
