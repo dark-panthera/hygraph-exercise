@@ -18,6 +18,8 @@
   </mat-card-content>
 
   <mat-card-content>
-    <app-genre [inputGenres]="movie.genres"></app-genre>
+    <app-genre [inputGenres]="movie.genres | slice:0:3"></app-genre>
+
+    <button mat-raised-button color="primary" class="btn btn--primary">Information</button>
   </mat-card-content>
 </mat-card>
